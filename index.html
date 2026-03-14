@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Artes Da Nicoli</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Fira Code', monospace;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#1a1a22; /* fundo escuro suave */
+overflow:hidden;
+color:#f2f2f2; /* texto claro */
+}
+
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+.container{
+width:350px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+text-align:center;
+}
+
+.foto img{
+width:140px;
+height:140px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #cdb4ff; /* lilás pastel */
+transition:0.3s;
+}
+
+.foto img:active{
+transform:scale(1.08);
+}
+
+.nome{
+margin-top:15px;
+font-size:26px;
+}
+
+.user{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:6px;
+margin-top:5px;
+}
+
+.verificado{
+width:16px;
+height:16px;
+}
+
+.code{
+margin-top:20px;
+background:#ffffff10; /* leve transparente */
+padding:14px;
+border-radius:8px;
+font-size:13px;
+color:#cdb4ff; /* lilás pastel */
+text-align:left;
+min-height:70px;
+white-space:pre-line;
+}
+
+.botoes{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.botao{
+padding:12px;
+border-radius:8px;
+border:1px solid #cdb4ff; /* lilás pastel */
+color:#cdb4ff;
+text-decoration:none;
+transition:0.3s;
+text-align:center;
+background:#ffffff10;
+}
+
+.botao:hover{
+background:#cdb4ff;
+color:#1a1a22;
+transform:scale(1.04);
+}
+
+footer{
+margin-top:20px;
+font-size:12px;
+opacity:0.7;
+}
+
+@media (prefers-color-scheme: light){
+
+body{
+background:#fff1f6; /* rosa pastel suave */
+color:#8a4b6b;
+}
+
+.container{
+background:#ffffffcc;
+border:1px solid #ffd6e7;
+}
+
+.foto img{
+border:2px solid #ffc8dd;
+}
+
+.code{
+background:#ffffff;
+color:#8a4b6b;
+}
+
+.botao{
+border:1px solid #ffc8dd;
+color:#8a4b6b;
+}
+
+.botao:hover{
+background:#ffc8dd;
+color:white;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+<div class="foto">
+<img src="foto.jpg" alt="Foto de perfil">
+</div>
+
+<h1 class="nome">Artes da nicoli</h1>
+
+<div class="user">
+
+<span>@nicoliantunescardoso1</span>
+
+<svg class="verificado" viewBox="0 0 40 40" fill="#cdb4ff">
+<path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"/>
+</svg>
+
+</div>
+
+<div class="code" id="terminal"></div>
+
+<div class="botoes">
+<a class="botao" href="projetos.html">
+MEUS PROJETOS
+</a>
+</div>
+
+<footer>
+  <a href="https://wa.me/5549999862424?text=%23feitocomcafeecpdigo.%20Ol%C3%A1%20vi%20seu%20site%20e%20adorei%20o%20resultado,%20o%20que%20pode%20fazer%20para%20mim%3F" target="_blank">
+    #feito com ☕ e código
+  </a>
+</footer>
+
+</div>
+
+<script>
+
+/* Função de texto para terminal */
+function obterTexto(){
+const modoClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+if(modoClaro){
+return `A pintura é poesia que se vê,
+e a poesia é pintura que se ouve.`;
+}else{
+return `A maior ameaça para a maioria de nós
+não é definir um objetivo alto demais e falhar,
+mas definir um objetivo baixo demais
+e alcançá-lo.`;
+}
+}
+
+function digitar(){
+const terminal = document.getElementById("terminal");
+terminal.innerHTML = "";
+const texto = obterTexto();
+let i = 0;
+function escrever(){
+if(i < texto.length){
+terminal.innerHTML += texto.charAt(i);
+i++;
+setTimeout(escrever,40);
+}
+}
+escrever();
+}
+
+digitar();
+window.matchMedia('(prefers-color-scheme: light)')
+.addEventListener('change', digitar);
+
+/* partículas estilo degradê Apple */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+let cores = ["#cdb4ff", "#ffc8dd", "#b5ead7", "#a0c4ff"]; // lilás, rosa, verde-água, azul pastel
+
+for(let i=0; i<70; i++){
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        cor: cores[Math.floor(Math.random() * cores.length)]
+    });
+}
+
+function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        let grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*4);
+        grad.addColorStop(0, p.cor + "aa"); // cor com leve transparência
+        grad.addColorStop(1, p.cor + "00"); // transparente na borda
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r*4, 0, Math.PI*2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        p.y += 0.3; // velocidade
+        if(p.y > canvas.height) p.y = 0;
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
+
+</body>
+</html>

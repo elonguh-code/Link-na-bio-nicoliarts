@@ -1,0 +1,263 @@
+:root{
+--text:white;
+--gold:#cfae63;
+}
+
+/* fundo animado estilo apple */
+
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:linear-gradient(
+270deg,
+#000016,
+#0a0a5c,
+#001a4d,
+#000016
+);
+
+background-size:800% 800%;
+animation:gradientMove 18s ease infinite;
+
+color:var(--text);
+font-family:system-ui;
+}
+
+/* animação fundo */
+
+@keyframes gradientMove{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+/* container vidro */
+
+.container{
+
+backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.1);
+
+box-shadow:0 20px 40px rgba(0,0,0,.4);
+
+padding:40px;
+border-radius:30px;
+
+text-align:center;
+
+width:90%;
+max-width:380px;
+
+animation:fadeUp 1s ease;
+
+}
+
+/* foto */
+
+.foto{
+width:170px;
+height:170px;
+
+border-radius:50%;
+border:5px solid var(--gold);
+
+overflow:hidden;
+margin:auto;
+}
+
+.foto img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* textos */
+
+.nome{
+font-size:38px;
+margin-top:20px;
+}
+
+/* usuário + selo verificado */
+
+.user{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+
+color:var(--gold);
+
+margin-top:10px;
+
+letter-spacing:3px;
+}
+
+.verificado{
+margin-left:2px;
+}
+
+/* botões */
+
+.botoes{
+margin-top:40px;
+
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.botao{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+padding:16px;
+
+border-radius:40px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,0.2);
+
+color:white;
+
+text-decoration:none;
+
+letter-spacing:4px;
+
+font-weight:bold;
+
+transition:.3s;
+
+position:relative;
+}
+
+.botao:hover{
+transform:translateY(-5px) scale(1.04);
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+/* icone */
+
+.icon{
+width:50px;
+height:50px;
+
+background:var(--gold);
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:22px;
+}
+
+/* tooltip */
+
+.botao::after{
+
+content:attr(data-tooltip);
+
+position:absolute;
+
+bottom:-30px;
+left:50%;
+
+transform:translateX(-50%);
+
+background:black;
+
+padding:6px 12px;
+
+font-size:12px;
+
+border-radius:8px;
+
+opacity:0;
+
+transition:.3s;
+}
+
+.botao:hover::after{
+opacity:1;
+}
+
+/* botão modo */
+
+/* animação entrada */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* responsivo */
+
+@media(max-width:600px){
+
+.nome{
+font-size:28px;
+}
+
+.foto{
+width:140px;
+height:140px;
+}
+
+}
+
+@media(min-width:1200px){
+
+.container{
+max-width:520px;
+}
+
+.nome{
+font-size:50px;
+}
+
+.botao{
+font-size:20px;
+padding:22px;
+}
+
+.assinatura-site{
+text-align: center;
+font-size: 11px;
+color: #aaa;
+margin-top: 50px;
+padding: 10px;
+opacity: 0.8;
+}
+
+.assinatura-site a{
+color: #00aaff;
+text-decoration: none;
+}
+
+.assinatura-site a:hover{
+text-decoration: underline;
+}
+}
