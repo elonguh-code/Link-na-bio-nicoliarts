@@ -1,0 +1,17 @@
+[
+  {
+    "titulo": "Desingn Anime",
+    "categoria": "anime",
+    "imagem": "arte1.jpg"
+  },
+  {
+    "titulo": "Realismo",
+    "categoria": "realismo",
+    "imagem": "arte2.jpg"
+  },
+  {
+    "titulo": "Desenho Criativo",
+    "categoria": "criativo",
+    "imagem": "arte3.jpg"
+  }
+]
